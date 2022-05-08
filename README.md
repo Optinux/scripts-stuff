@@ -1,2 +1,2 @@
 # scripts & stuff
-Various scripts and snippets of code
+Various scripts and other things I created and / or modified
