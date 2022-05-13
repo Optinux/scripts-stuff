@@ -8,12 +8,12 @@
   --spice-main: transparent;
   --spice-misc: rgba(30, 30, 30, 0.8);
   --spice-player: rgba(30, 30, 30, 0.4);
-  --spice-bg: "https://i.redd.it/w85miv47xmm61.jpg";
+  --spice-bg: "https://i.imgur.com/JOxXQC5.png";
 }
 /* Set the wallpaper to the one matching your color scheme
  Source: https://wallpapercave.com/wp/wp5003466.jpg
  Purple: https://github.com/Motschen/Retroblur/blob/main/assets/background_purple.jpg?raw=true
- Red: https://i.redd.it/w85miv47xmm61.jpg
+ Red: https://github.com/Motschen/Retroblur/blob/main/assets/background_red.jpg?raw=true
  Green: https://github.com/Motschen/Retroblur/blob/main/assets/background_green.jpg?raw=true
  Yellow: https://github.com/Motschen/Retroblur/blob/main/assets/background_yellow.jpg?raw=true
  Blue: https://github.com/Motschen/Retroblur/blob/main/assets/background_blue.jpg?raw=true */
@@ -25,6 +25,9 @@ body {
 .main-repeatButton-button, .main-shuffleButton-button {
   color: var(--spice-subtext);
   opacity: 70%;
+}
+.X1lXSiVj0pzhQCUo_72A, .X1lXSiVj0pzhQCUo_72A:hover {
+  color: var(--spice-button);
 }
 .encore-dark-theme {
   --background-base: var(--spice-button);
@@ -38,6 +41,12 @@ body {
     margin-left:15.5px;
     border-radius: 15%;
 }
+.eSMjmiD29Ox35O95waw6:after, .eSMjmiD29Ox35O95waw6:before {
+  background: transparent !important;
+}
+.McwcCfBLSuXa5UDU1IMw {
+    display: none;
+}
 .n87ifzfQlmGX8vkeYGDL {
     visibility: hidden;
 }
@@ -50,9 +59,8 @@ body {
 .lEsg6gi7HowFgzWl_634 {
     --lyrics-color-background: rgba(30, 30, 30, 0.4) !important;
 }
-.main-connectBar-connectBar {
-    opacity: 50%;
-    filter: drop-shadow(0 0 6px var(--spice-button)) !important;
+.main-connectBar-connectBar, .iUSAh1wdhXLk9hHSbkCA.hsrxlVHxK0zZrgarkxuA:after {
+    filter: drop-shadow(0 0 6px var(--spice-button)) brightness(50%) !important;
 }
 .yaVzc4bseRnztmfRv_u3, .volume-bar .progress-bar__slider {
     filter: drop-shadow(0 0 6px var(--spice-button)) !important;
@@ -76,7 +84,7 @@ body {
 .gSLhUO:hover, .main-playButton-PlayButton.main-playButton-primary:hover, .main-pageErrorTemplate-errorButton:hover, div.GlueDropTarget.personal-library >*.active:hover, .main-rootlist-rootlistItemLink.main-rootlist-rootlistItemLinkActive:hover, .main-navBar-navBarLinkActive:hover, .control-button-heart:hover, .gHYQaG:hover, .iaAUvZ:hover {
     animation: fadingGlow 1s ease 0.5 forwards !important;
 }
-a:hover, .main-trackList-rowPlayPauseButton:hover {
+a:hover, .main-trackList-rowPlayPauseButton:hover, svg:hover {
     animation: fadingGlowWhite 1s ease 0.5 forwards;
 }
 @keyframes speaker {
