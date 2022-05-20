@@ -1,0 +1,14 @@
+clear
+$env:PYTHONIOENCODING="utf-8"
+oh-my-posh --init --shell pwsh --config ~/slim.omp.json | Invoke-Expression
+Invoke-Expression (&scoop-search --hook)
+function scoopall {
+ scoop update *; scoop cleanup *; scoop cache rm *
+}
+iex "$(thefuck --alias)"
+clear
+
+Import-Module C:\Users\Tobias\scoop\modules\scoop-completion
+Import-Module PSReadLine
+Set-PSReadLineOption -PredictionSource History
+Set-PSReadLineOption -Colors @{ InlinePrediction = '#836b47'}
