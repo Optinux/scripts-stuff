@@ -45,7 +45,7 @@
             "font": 
             {
                 "face": "FiraCode NF",
-                "size": 11
+                "size": 11.0
             },
             "opacity": 5,
             "padding": "0",
@@ -62,14 +62,24 @@
         "list": 
         [
             {
+                "adjustIndistinguishableColors": "always",
+                "colorScheme": "One Half Dark",
+                "commandline": "\"C:\\Program Files\\PowerShell\\7\\pwsh.exe\"",
                 "font": 
                 {
-                    "face": "FiraCode NF"
+                    "face": "CaskaydiaCove NF Mono"
                 },
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "hidden": false,
-                "name": "Windows PowerShell",
-                "opacity": 30
+                "icon": "ms-appx:///ProfileIcons/pwsh.png",
+                "name": "pwsh",
+                "opacity": 30,
+                "scrollbarState": "visible",
+                "unfocusedAppearance": 
+                {
+                    "backgroundImage": "C:\\Users\\Tobias\\Pictures\\term_bg-modified.png",
+                    "experimental.retroTerminalEffect": false
+                }
             },
             {
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
@@ -90,7 +100,7 @@
                 "font": 
                 {
                     "face": "Consolas",
-                    "size": 12
+                    "size": 12.0
                 },
                 "guid": "{5ee8e848-87fd-4859-91e5-282708f4c21b}",
                 "hidden": false,
@@ -101,25 +111,36 @@
                 "startingDirectory": "%USERPROFILE%"
             },
             {
-                "guid": "{61d76003-7bde-5620-9642-e94fc8e6318c}",
-                "hidden": false,
-                "name": "Developer Command Prompt for VS 2022",
-                "source": "Windows.Terminal.VisualStudio"
-            },
-            {
-                "guid": "{eb150c45-5469-5971-9d66-a00111c299e2}",
-                "hidden": false,
-                "name": "Developer PowerShell for VS 2022",
-                "source": "Windows.Terminal.VisualStudio"
-            },
-            {
                 "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
                 "hidden": false,
                 "name": "Ubuntu",
                 "source": "Windows.Terminal.Wsl"
+            },
+            {
+                "altGrAliasing": true,
+                "antialiasingMode": "grayscale",
+                "closeOnExit": "automatic",
+                "commandline": "powershell.exe -noProfile",
+                "font": 
+                {
+                    "face": "FiraCode NF"
+                },
+                "guid": "{8a5aa83d-9e99-4c63-bfc8-0f25b4f7b83d}",
+                "hidden": false,
+                "historySize": 9001,
+                "icon": "ms-appx:///ProfileIcons/{61c54bbd-c2c6-5271-96e7-009a87ff44bf}.png",
+                "name": "Windows PowerShell (noProfile)",
+                "opacity": 30,
+                "snapOnInput": true,
+                "startingDirectory": "%USERPROFILE%",
+                "unfocusedAppearance": 
+                {
+                    "backgroundImage": "C:\\Users\\Tobias\\Pictures\\term_bg-modified.png",
+                    "experimental.retroTerminalEffect": false
+                }
             }
         ]
-    }, 
+    },
     "schemes": 
     [
         {
@@ -353,5 +374,6 @@
             "yellow": "#808000"
         }
     ],
+    "themes": [],
     "useAcrylicInTabRow": true
 }
