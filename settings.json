@@ -27,6 +27,13 @@
                 "splitMode": "duplicate"
             },
             "keys": "alt+shift+d"
+        },
+        {
+            "command": 
+            {
+                "action": "quakeMode"
+            },
+            "keys": "ctrl+q"
         }
     ],
     "alwaysOnTop": false,
@@ -64,7 +71,7 @@
             {
                 "adjustIndistinguishableColors": "always",
                 "colorScheme": "One Half Dark",
-                "commandline": "\"C:\\Program Files\\PowerShell\\7\\pwsh.exe\"",
+                "commandline": "C:\\Users\\Tobias\\scoop\\apps\\Powershell\\current\\pwsh.exe",
                 "font": 
                 {
                     "face": "CaskaydiaCove NF Mono"
@@ -77,7 +84,7 @@
                 "scrollbarState": "visible",
                 "unfocusedAppearance": 
                 {
-                    "backgroundImage": "C:\\Users\\Tobias\\Pictures\\term_bg-modified.png",
+                    "backgroundImage": "C:\\Users\\Tobias\\Pictures\\term_bg-modified_winter.png",
                     "experimental.retroTerminalEffect": false
                 }
             },
@@ -138,6 +145,18 @@
                     "backgroundImage": "C:\\Users\\Tobias\\Pictures\\term_bg-modified.png",
                     "experimental.retroTerminalEffect": false
                 }
+            },
+            {
+                "guid": "{918cf951-5e32-574b-bbb7-85875c88edf2}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{99661e6f-e9dc-5321-affb-5f53e1ce81b2}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
             }
         ]
     },
@@ -374,6 +393,7 @@
             "yellow": "#808000"
         }
     ],
+    "startOnUserLogin": true,
     "themes": [],
     "useAcrylicInTabRow": true
 }
