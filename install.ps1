@@ -24,7 +24,7 @@ switch ($fileContent)
     Remove-Item $filePath # remove lockfile
     New-Item "C:\rcount.txt" -ItemType File -Value "1" # update lockfile
 
-    # Enable Autologin during Installation
+    # Enable Autologin during Installation, actually kinda buggy and doesnt work sometimes. If prompted to enter credentials, do so and the script will continue.
     $Username = "Administrator" 
     $Pass = "Pa$$w0rd"
     $RegistryPath = 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon'
@@ -54,7 +54,7 @@ switch ($fileContent)
     Add-DhcpServerInDC -DnsName controller.local -IPAddress 192.168.178.1 # authorize DHCP
     Add-DhcpServerv4Scope -Name "scope1" -StartRange 192.168.178.1 -EndRange 192.168.178.254 -SubnetMask 255.255.255.0 # create DHCP scope
     New-ADOrganizationalUnit -Name "FiSi" # create OU
-    New-ADUser -Name "Rainer Winkler" -GivenName "Rainer" -Surname "Winkler" -SamAccountName "rwinkler" -Path "OU=FiSi,DC=controller,DC=local" -AccountPassword (ConvertTo-SecureString "Pa$$w0rd" -AsPlainText -Force) -Enabled $true # create user
+    New-ADUser -Name "Rainer Winkler" -GivenName "Rainer" -Surname "Winkler" -SamAccountName "rwinkler" -Path "OU=FiSi,DC=controller,DC=local" -AccountPassword (ConvertTo-SecureString "Pa$$w0rdPa$$w0rd" -AsPlainText -Force) -Enabled $true # create user
     Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -name "fDenyTSConnections" -value 0 # enable RDP
     Add-LocalGroupMember -Group "Remote Desktop Users" -Member "rwinkler" # add user to RDP group. Buggy, sometimes just doesnt work for no reason
     Write-Host "Dont worry if the last command failed, its buggy and fails sometimes."
