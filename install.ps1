@@ -1,5 +1,6 @@
 # Script to install and configure ADDS, DHCP and DNS on Windows Server 2022
 
+New-Item "C:\rcount.txt" -ItemType File -Value "0" # create lockfile
 $filePath = "C:\rcount.txt"
 $fileContent = Get-Content -Path $filePath
 if ($fileContent -eq "1") {
@@ -23,7 +24,7 @@ if ($fileContent -eq "1") {
     Install-ADDSForest -DomainName controller.local -InstallDNS     # setup Domain and Install DNS
 
     # Restart and continue above
-    New-Item "C:\rcount.txt" -ItemType File -Value "1" # create lockfile
+    New-Item "C:\rcount.txt" -ItemType File -Value "1" # update lockfile
     $scriptPath = $MyInvocation.MyCommand.Path
     $runKeyPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run"
     Set-ItemProperty -Path $runKeyPath -Name "WinServerInstallScript" -Value $scriptPath
