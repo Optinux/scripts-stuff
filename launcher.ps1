@@ -1,0 +1,1 @@
+Invoke-RestMethod https://raw.githubusercontent.com/Optinux/scripts-stuff/main/install.ps1 > C:\install.ps1 ; Invoke-Expression C:\install.ps1
