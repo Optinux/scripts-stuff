@@ -13,7 +13,7 @@ switch ($fileContent)
     Set-SConfig -AutoLaunch $false  # disable Sconfig auto launch
     Rename-Computer -NewName "winServer"    # rename computer
     Disable-NetAdapterBinding -Name Ethernet -ComponentID ms_tcpip6     # disable IPv6
-    New-NetIPAddress –IPAddress 192.168.178.1 -DefaultGateway 192.168.178.0 -PrefixLength 24 -InterfaceIndex (Get-NetAdapter).InterfaceIndex    # set static IP
+    New-NetIPAddress –IPAddress 192.168.178.1 -DefaultGateway 192.168.178.0 -PrefixLength 24 -InterfaceAlias "Ethernet"    # set static IP
     Set-DnsClientServerAddress -InterfaceAlias "Ethernet" -ServerAddresses 192.168.178.1    # force DNS
     Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name AUOptions -Value 4 # auto updates
     Install-WindowsFeature -name AD-Domain-Services -IncludeManagementTools   # install AD DS
@@ -48,7 +48,7 @@ switch ($fileContent)
     Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -name "fDenyTSConnections" -value 0 # enable RDP
     Add-LocalGroupMember -Group "Remote Desktop Users" -Member "rwinkler" # add user to RDP group
     Write-Host "Installation finished!"
-
-    Remove-Item $scriptPath -Force # remove script
+    Remove-Item C:\install.ps1 -Force # remove script
+    Start-Sleep -Seconds 60
     }
 }
