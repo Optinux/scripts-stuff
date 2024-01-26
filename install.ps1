@@ -11,6 +11,12 @@ $fileContent = Get-Content -Path $filePath
 switch ($fileContent) 
 {
   0 {
+    Write-Host "!WARNING!"
+    Write-Host "Make sure no DHCP-Server is running on the network!"
+    Write-Host "Its best practice to disconnect the Server from any kind of network during install."
+    Write-Host "You have 15s until Installation will start"
+    Start-Sleep -Seconds 15
+    Write-Host "Starting Installation!"
     Set-SConfig -AutoLaunch $false  # disable Sconfig auto launch
     Rename-Computer -NewName "winServer"    # rename computer
     Disable-NetAdapterBinding -Name Ethernet -ComponentID ms_tcpip6     # disable IPv6
