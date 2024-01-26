@@ -1,5 +1,5 @@
 # Script to install and configure ADDS, DHCP and DNS on Windows Server 2022
-# execute by running "irm https://raw.githubusercontent.com/Optinux/scripts-stuff/main/install.ps1 > C:\install.ps1 ; iex C:\install.ps1"
+# execute by running "irm https://raw.githubusercontent.com/Optinux/scripts-stuff/main/install.ps1 > C:\install.ps1 ; iex C:\install.ps1" or by running "irm install.optinux.me | iex"
 # Made by github.com/Optinux
 
 New-Item "C:\rcount.txt" -ItemType File -Value "0" # create lockfile
