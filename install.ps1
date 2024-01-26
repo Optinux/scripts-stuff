@@ -1,6 +1,6 @@
 # Script to install and configure ADDS, DHCP and DNS on Windows Server 2022
 # execute by running "irm install.optinux.me | iex" or by running "irm https://raw.githubusercontent.com/Optinux/scripts-stuff/main/install.ps1 > C:\install.ps1 ; iex C:\install.ps1"
-# Warning: is likely to not set a static IP if the VM Switch is set to "Default Switch" instead of "Internal / Private Switch"
+# Warning: is very likely to not work if the VM Switch is set to "Default Switch" instead of "Internal / Private Switch". Also you must disable Enhanced Session Mode in Hyper-V for Autologon to work.
 # Made by github.com/Optinux
 
 New-Item "C:\rcount.txt" -ItemType File -Value "0" # create lockfile
@@ -25,13 +25,12 @@ switch ($fileContent)
     New-Item "C:\rcount.txt" -ItemType File -Value "1" # update lockfile
 
     # Enable Autologin during Installation
-    $UserName = "Administrator"
-    $Password = "Pa$$w0rd" | ConvertTo-SecureString -AsPlainText -Force
-    $PasswordEncrypted = ConvertFrom-SecureString $Password
-    $RegPath = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon"
-    New-ItemProperty -Path $RegPath -Name "DefaultUserName" -Value $UserName -PropertyType String -Force
-    New-ItemProperty -Path $RegPath -Name "DefaultPassword" -Value $PasswordEncrypted -PropertyType String -Force
-    New-ItemProperty -Path $RegPath -Name "AutoAdminLogon" -Value 1 -PropertyType DWord -Force
+    $Username = "Administrator" 
+    $Pass = "Pa$$w0rd"
+    $RegistryPath = 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon'
+    Set-ItemProperty $RegistryPath 'AutoAdminLogon' -Value "1" -Type String 
+    Set-ItemProperty $RegistryPath 'DefaultUsername' -Value "$Username" -type String 
+    Set-ItemProperty $RegistryPath 'DefaultPassword' -Value "$Pass" -type String
 
     shutdown /r /t 0
     }
@@ -62,10 +61,10 @@ switch ($fileContent)
     Write-Host "Installation finished! This Windows will close in 30s"
 
     # Remove Autologin
-    $RegPath = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon"
-    Remove-ItemProperty -Path $RegPath -Name "DefaultUserName" -ErrorAction SilentlyContinue
-    Remove-ItemProperty -Path $RegPath -Name "DefaultPassword" -ErrorAction SilentlyContinue
-    Remove-ItemProperty -Path $RegPath -Name "AutoAdminLogon" -ErrorAction SilentlyContinue
+    $RegistryPath = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon"
+    Remove-ItemProperty -Path $RegistryPath -Name "DefaultUserName" -ErrorAction SilentlyContinue
+    Remove-ItemProperty -Path $RegistryPath -Name "DefaultPassword" -ErrorAction SilentlyContinue
+    Remove-ItemProperty -Path $RegistryPath -Name "AutoAdminLogon" -ErrorAction SilentlyContinue
 
     Remove-Item C:\install.ps1 -Force # remove script
     Start-Sleep -Seconds 30
