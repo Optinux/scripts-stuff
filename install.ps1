@@ -6,6 +6,7 @@ $fileContent = Get-Content -Path $filePath
 if ($fileContent -eq "1") {
     Write-Host "First Reboot succeeded, continuing with installation"
     Remove-Item $filePath # remove lockfile
+    Install-ADDSForest -DomainName controller.local -InstallDNS     # setup Domain and Install DNS
     Install-WindowsFeature DHCP -IncludeManagementTools # install DHCP
     Add-DhcpServerInDC -DnsName controller.local -IPAddress 192.168.178.1 # authorize DHCP
     Add-DhcpServerv4Scope -Name "scope1" -StartRange 192.168.178.1 -EndRange 192.168.178.254 -SubnetMask 255.255.255.0 # create DHCP scope
@@ -21,9 +22,9 @@ if ($fileContent -eq "1") {
     Set-DnsClientServerAddress -InterfaceAlias "Ethernet" -ServerAddresses 192.168.178.1    # force DNS
     Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name AUOptions -Value 4 # auto updates
     Install-WindowsFeature -name AD-Domain-Services -IncludeManagementTools   # install AD DS
-    Install-ADDSForest -DomainName controller.local -InstallDNS     # setup Domain and Install DNS
 
     # Restart and continue above
+    Remove-Item $filePath # remove lockfile
     New-Item "C:\rcount.txt" -ItemType File -Value "1" # update lockfile
     $scriptPath = $MyInvocation.MyCommand.Path
     $runKeyPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run"
