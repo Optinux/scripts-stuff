@@ -1,7 +1,10 @@
 # Script to install and configure ADDS, DHCP and DNS on Windows Server 2022
-# execute by running "irm https://raw.githubusercontent.com/Optinux/scripts-stuff/main/install.ps1 > C:\install.ps1 | iex"
+# execute by running "irm https://raw.githubusercontent.com/Optinux/scripts-stuff/main/install.ps1 > C:\install.ps1 ; iex C:\install.ps1"
+# Made by github.com/Optinux
 
 New-Item "C:\rcount.txt" -ItemType File -Value "0" # create lockfile
+$scriptPath = "powershell.exe C:\install.ps1" # path to script including commands
+$ADDSPWD = ConvertTo-SecureString "Pa$$w0rd" -AsPlainText -Force # set password for AD DS 
 $filePath = "C:\rcount.txt"
 $fileContent = Get-Content -Path $filePath
 switch ($fileContent) 
@@ -14,12 +17,11 @@ switch ($fileContent)
     Set-DnsClientServerAddress -InterfaceAlias "Ethernet" -ServerAddresses 192.168.178.1    # force DNS
     Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name AUOptions -Value 4 # auto updates
     Install-WindowsFeature -name AD-Domain-Services -IncludeManagementTools   # install AD DS
-
+    
+    $runKeyPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\RunOnce" # set script to run on next boot
+    Set-ItemProperty -Path $runKeyPath -Name "WinServerInstallScript" -Value $scriptPath
     Remove-Item $filePath # remove lockfile
     New-Item "C:\rcount.txt" -ItemType File -Value "1" # update lockfile
-    $scriptPath = "C:\install.ps1" # path to script  
-    $runKeyPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" # set script to run on boot, only has to be done once
-    Set-ItemProperty -Path $runKeyPath -Name "WinServerInstallScript" -Value $scriptPath
     shutdown /r /t 0
     }
 
@@ -27,8 +29,10 @@ switch ($fileContent)
     Write-Host "First Reboot succeeded, continuing with installation"
     Remove-Item $filePath # remove lockfile
     New-Item "C:\rcount.txt" -ItemType File -Value "2" # update lockfile
+    $runKeyPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\RunOnce" # set script to run on next boot
+    Set-ItemProperty -Path $runKeyPath -Name "WinServerInstallScript" -Value $scriptPath
 
-    Install-ADDSForest -DomainName controller.local -InstallDNS -SafeModeAdministratorPassword "Pa$$w0rd" -Confirm    # setup Domain and Install DNS
+    Install-ADDSForest -DomainName controller.local -InstallDNS -SafeModeAdministratorPassword $ADDSPWD -Confirm -Force    # setup Domain and Install DNS
     shutdown /r /t 0
     }
   
