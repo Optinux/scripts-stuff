@@ -1,6 +1,6 @@
 <Configuration ID="09cf82ae-5f13-485a-bd6c-46cf79682739">
   <Info Description="" />
-  <Add OfficeClientEdition="64" Channel="CurrentPreview" MigrateArch="TRUE">
+  <Add OfficeClientEdition="64" Channel="BetaChannel" MigrateArch="TRUE">
     <Product ID="O365ProPlusEEANoTeamsRetail">
       <Language ID="de-de" />
       <Language ID="en-us" />
