@@ -3,7 +3,6 @@ Invoke-Expression (&scoop-search --hook)
 function scoopall {
  scoop update *; scoop cleanup *; scoop cache rm *
 }
-Import-Module C:\Users\tobia\scoop\modules\scoop-completion
 Import-Module PSReadLine
 Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineOption -Colors @{ InlinePrediction = '#836b47'}
