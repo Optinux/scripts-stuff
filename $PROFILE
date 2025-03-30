@@ -1,4 +1,4 @@
-oh-my-posh init pwsh --config ~/atomic.omp.json | Invoke-Expression
+oh-my-posh init pwsh --config ./catppuccin.omp.json | Invoke-Expression
 Invoke-Expression (&scoop-search --hook)
 function scoopall {
  scoop update *; scoop cleanup *; scoop cache rm *
@@ -8,7 +8,3 @@ Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineOption -Colors @{ InlinePrediction = '#836b47'}
 clear
 fastfetch
-
-
-
-
